@@ -1,22 +1,64 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+#define PAIS_ESTADOS 8
+#define ESTADOS_CIDADE 4
+
+// Definindo a estrutura Cidade
+typedef struct {
+    char codigo[20];
+    int populacao;
+    double area;
+    double pib;
+    int pontos_turisticos;
+} Cidade;
+
+// Função para inserir dados de uma cidade
+void supertrunfo(Cidade *cidade) {
+    printf("\nInsira o código da cidade (Ex: A01): ");
+    scanf("%s", cidade->codigo);
+
+    printf("Insira a população: ");
+    scanf("%d", &cidade->populacao);
+
+    printf("Insira a área: ");
+    scanf("%lf", &cidade->area);
+
+    printf("Insira o PIB: ");
+    scanf("%lf", &cidade->pib);
+
+    printf("Insira o número de pontos turísticos: ");
+    scanf("%d", &cidade->pontos_turisticos);
+}
+
+// Função para exibir os dados de uma cidade
+void exibirCidade(Cidade cidade) {
+    printf("Código: %s\n", cidade.codigo);
+    printf("População: %d\n", cidade.populacao);
+    printf("Área: %.2f\n", cidade.area);
+    printf("PIB: %.2f\n", cidade.pib);
+    printf("Número de pontos turísticos: %d\n", cidade.pontos_turisticos);
+}
 
 int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
-    
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    Cidade estados[PAIS_ESTADOS][ESTADOS_CIDADE];
+    int i, j;
+
+    // Cadastro das cidades
+    for (i = 0; i < PAIS_ESTADOS; i++) {
+        for (j = 0; j < ESTADOS_CIDADE; j++) {
+            printf("\nCadastrando cidade %d do estado %c:\n", j + 1, 'A' + i);
+            supertrunfo(&estados[i][j]);
+        }
+    }
+
+    // Exibição das cidades cadastradas
+    printf("\nCidades cadastradas:\n");
+    for (i = 0; i < PAIS_ESTADOS; i++) {
+        for (j = 0; j < ESTADOS_CIDADE; j++) {
+            printf("\nEstado %c, Cidade %d:\n", 'A' + i, j + 1);
+            exibirCidade(estados[i][j]);
+        }
+    }
 
     return 0;
 }
